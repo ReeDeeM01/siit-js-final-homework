@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": 1777472859312,
+      "fullName": "John Updated",
+      "username": "johnupdated",
+      "email": "john@example.com",
+      "password": "$2b$10$va2SPbez9JCG//t8Y/i9y.i.4s7/Ae.84olXML2NWe/wih3tTE/Nm"
+    },
+    {
+      "id": 1778154615561,
+      "fullName": "Trend Lift",
+      "username": "trend_lift",
+      "email": "trendliftwe@gmail.com",
+      "password": "$2b$10$FoHEQd01UdAhoeSe6s2qwOi/0HTcJxqYz6MEwIaeJgDM6JoFYb/sO",
+      "bio": "Just a viewer on this platform",
+      "location": "Romania"
+    },
+    {
+      "id": 1778155562792,
+      "fullName": "Test User",
+      "username": "testuser",
+      "email": "testmail@mail.com",
+      "password": "$2b$10$Rz7AFeWGJn6Sl2uAhN8sq.5a/BYm6d5F.oUpmzuZDN3P8yClysFPu"
+    },
+    {
+      "id": 1778160359757,
+      "fullName": "Brianna Andrioni",
+      "username": "bri3",
+      "email": "brianna.and16@outlook.com",
+      "password": "$2b$10$eR/3cmDeZDh6f8JJzIRMA.maPQ8Y5HBm2CPI4vd5n.Aha55D/8K8q"
+    }
+  ]
+}
