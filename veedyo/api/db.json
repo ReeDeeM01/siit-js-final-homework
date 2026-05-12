@@ -8,15 +8,6 @@
       "password": "$2b$10$va2SPbez9JCG//t8Y/i9y.i.4s7/Ae.84olXML2NWe/wih3tTE/Nm"
     },
     {
-      "id": 1778154615561,
-      "fullName": "Trend Lift",
-      "username": "trend_lift",
-      "email": "trendliftwe@gmail.com",
-      "password": "$2b$10$FoHEQd01UdAhoeSe6s2qwOi/0HTcJxqYz6MEwIaeJgDM6JoFYb/sO",
-      "bio": "Not a content creator",
-      "location": "Romania"
-    },
-    {
       "id": 1778155562792,
       "fullName": "Test User",
       "username": "testuser",
@@ -29,19 +20,28 @@
       "username": "bri3",
       "email": "brianna.and16@outlook.com",
       "password": "$2b$10$eR/3cmDeZDh6f8JJzIRMA.maPQ8Y5HBm2CPI4vd5n.Aha55D/8K8q"
+    },
+    {
+      "id": 1778588636386,
+      "fullName": "Trend Lift",
+      "username": "trend_lift",
+      "email": "trendliftwe@gmail.com",
+      "password": "$2b$10$rwifXFeXfoI86vTYaVYWq.j/yVn.aSnTbI.lpdlfq1t5xF1tEt1FS",
+      "bio": "",
+      "location": ""
     }
   ],
   "videos": [
     {
-      "id": 1778588010806,
+      "id": 1778588941113,
       "title": "Money Glitch",
-      "description": "In this video you will realise you have to go to work!",
+      "description": "In this video you will realise you need to go to work!",
       "category": "Chill",
-      "duration": 10,
+      "duration": 12,
       "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "authorId": 1778154615561,
+      "authorId": 1778588636386,
       "authorName": "Trend Lift",
-      "createdAt": "2026-05-12T12:13:30.806Z"
+      "createdAt": "2026-05-12T12:29:01.113Z"
     }
   ]
 }

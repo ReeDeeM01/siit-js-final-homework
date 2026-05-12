@@ -165,7 +165,7 @@ export default function Landing() {
                     fontSize: "14px",
                   }}
                 >
-                  {video.category.charAt(0)}
+                  {video.authorName.charAt(0).toUpperCase()}
                 </div>
 
                 <div>

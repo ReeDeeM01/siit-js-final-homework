@@ -147,8 +147,14 @@ app.delete("/profile", authenticateToken, (req, res) => {
   const users = getUsers()
   const newUsers = users.filter(u => u.id !== req.user.id)
   saveUsers(newUsers)
+
+  const videos = getVideos()
+  const newVideos = videos.filter(v => v.authorId !== req.user.id)
+  saveVideos(newVideos)
+
   res.json({ message: "Account deleted successfully" })
 })
+
 
 // Get all videos (public)
 app.get("/videos", (req, res) => {
