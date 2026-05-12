@@ -42,18 +42,22 @@ export default function Profile() {
       <div className="profile-card">
         <div className="profile-header">
           <div className="profile-avatar">
-            {user.fullName.charAt(0).toUpperCase()}
+            {user.firstName.charAt(0).toUpperCase()}
           </div>
           <div>
-            <h1 style={{ fontSize: '22px', marginBottom: '4px' }}>{user.fullName}</h1>
+            <h1 style={{ fontSize: '22px', marginBottom: '4px' }}>{user.firstName} {user.lastName}</h1>
             <p style={{ color: 'var(--text-secondary)', margin: 0 }}>@{user.username}</p>
           </div>
         </div>
 
         <div className="profile-fields">
           <div className="profile-field">
-            <span>Full Name</span>
-            <span>{user.fullName}</span>
+            <span>First Name</span>
+            <span>{user.firstName}</span>
+          </div>
+          <div className="profile-field">
+            <span>Last Name</span>
+            <span>{user.lastName}</span>
           </div>
           <div className="profile-field">
             <span>Username</span>

@@ -1,47 +1,38 @@
 {
   "users": [
     {
-      "id": 1777472859312,
-      "fullName": "John Updated",
-      "username": "johnupdated",
-      "email": "john@example.com",
-      "password": "$2b$10$va2SPbez9JCG//t8Y/i9y.i.4s7/Ae.84olXML2NWe/wih3tTE/Nm"
-    },
-    {
-      "id": 1778155562792,
-      "fullName": "Test User",
-      "username": "testuser",
-      "email": "testmail@mail.com",
-      "password": "$2b$10$Rz7AFeWGJn6Sl2uAhN8sq.5a/BYm6d5F.oUpmzuZDN3P8yClysFPu"
-    },
-    {
-      "id": 1778160359757,
-      "fullName": "Brianna Andrioni",
-      "username": "bri3",
-      "email": "brianna.and16@outlook.com",
-      "password": "$2b$10$eR/3cmDeZDh6f8JJzIRMA.maPQ8Y5HBm2CPI4vd5n.Aha55D/8K8q"
-    },
-    {
-      "id": 1778588636386,
-      "fullName": "Trend Lift",
+      "id": 1778589973943,
+      "firstName": "Trend",
+      "lastName": "Lift",
       "username": "trend_lift",
       "email": "trendliftwe@gmail.com",
-      "password": "$2b$10$rwifXFeXfoI86vTYaVYWq.j/yVn.aSnTbI.lpdlfq1t5xF1tEt1FS",
+      "password": "$2b$10$vfQ7aYTPW3YuedyTptGlSey3n/aig/c360BvZ6Wy15PNmklWQGh0m",
       "bio": "",
       "location": ""
     }
   ],
   "videos": [
     {
-      "id": 1778588941113,
+      "id": 1778590003901,
       "title": "Money Glitch",
-      "description": "In this video you will realise you need to go to work!",
+      "description": "Watching this video will make you understand you have to go to work!",
       "category": "Chill",
       "duration": 12,
       "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "authorId": 1778588636386,
+      "authorId": 1778589973943,
       "authorName": "Trend Lift",
-      "createdAt": "2026-05-12T12:29:01.113Z"
+      "createdAt": "2026-05-12T12:46:43.901Z"
+    },
+    {
+      "id": 1778590713321,
+      "title": "Camping Solo in a Haunted Forest",
+      "description": "This video might be sensitive for some viewers.",
+      "category": "Travel",
+      "duration": 47,
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "authorId": 1778589973943,
+      "authorName": "Trend Lift",
+      "createdAt": "2026-05-12T12:58:33.321Z"
     }
   ]
 }

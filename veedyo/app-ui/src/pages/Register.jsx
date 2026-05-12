@@ -5,7 +5,8 @@ import axios from 'axios'
 export default function Register() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    fullName: '',
+    firstName: '',
+    lastName: '',
     username: '',
     email: '',
     password: '',
@@ -62,8 +63,12 @@ export default function Register() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Full Name</label>
-            <input className="form-input" name="fullName" value={formData.fullName} onChange={handleChange} required />
+            <label>First Name</label>
+            <input className="form-input" name="firstName" value={formData.firstName} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input className="form-input" name="lastName" value={formData.lastName} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label>Username</label>

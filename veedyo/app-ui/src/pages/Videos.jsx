@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const CATEGORIES = ['Coding', 'Music', 'Gaming', 'Travel', 'Food', 'Fitness', 'Tech', 'Chill']
 
@@ -12,8 +13,7 @@ export default function Videos() {
   const [editingVideo, setEditingVideo] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [formData, setFormData] = useState({ title: '', description: '', category: '', duration: '', url: '' })
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
+  const [formError, setFormError] = useState('')
   const [loading, setLoading] = useState(false)
 
   useEffect(() => { fetchVideos() }, [])
@@ -23,7 +23,7 @@ export default function Videos() {
       const res = await axios.get('http://localhost:3001/videos')
       setVideos(res.data)
     } catch {
-      setError('Failed to load videos')
+      toast.error('Failed to load videos')
     }
   }
 
@@ -35,31 +35,29 @@ export default function Videos() {
     setEditingVideo(null)
     setFormData({ title: '', description: '', category: '', duration: '', url: '' })
     setShowForm(true)
-    setError('')
-    setSuccess('')
+    setFormError('')
   }
 
   function openEditForm(video) {
     setEditingVideo(video)
     setFormData({ title: video.title, description: video.description, category: video.category, duration: video.duration, url: video.url })
     setShowForm(true)
-    setError('')
-    setSuccess('')
+    setFormError('')
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
-    setError('')
+    setFormError('')
     setLoading(true)
 
     if (!formData.title || !formData.description || !formData.category || !formData.duration || !formData.url) {
-      setError('All fields are required')
+      setFormError('All fields are required')
       setLoading(false)
       return
     }
 
     if (formData.duration <= 0) {
-      setError('Duration must be a positive number')
+      setFormError('Duration must be a positive number')
       setLoading(false)
       return
     }
@@ -70,18 +68,20 @@ export default function Videos() {
           headers: { Authorization: `Bearer ${token}` }
         })
         setVideos(videos.map(v => v.id === editingVideo.id ? res.data : v))
-        setSuccess('Video updated successfully!')
+        toast.success('Video updated successfully!')
+
       } else {
         const res = await axios.post('http://localhost:3001/videos', formData, {
           headers: { Authorization: `Bearer ${token}` }
         })
         setVideos([...videos, res.data])
-        setSuccess('Video added successfully!')
+        toast.success('Video added successfully!')
+
       }
       setShowForm(false)
       setEditingVideo(null)
     } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong')
+      toast.error(err.response?.data?.message || 'Something went wrong')
     } finally {
       setLoading(false)
     }
@@ -94,9 +94,9 @@ export default function Videos() {
       })
       setVideos(videos.filter(v => v.id !== id))
       setDeleteConfirm(null)
-      setSuccess('Video deleted successfully!')
+      toast.success('Video deleted successfully!')
     } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong')
+      toast.error(err.response?.data?.message || 'Something went wrong')
     }
   }
 
@@ -109,15 +109,12 @@ export default function Videos() {
         )}
       </div>
 
-      {error && <div className="alert-error">{error}</div>}
-      {success && <div className="alert-success">{success}</div>}
-
       {/* Add/Edit Modal */}
       {showForm && (
         <div className="modal-overlay">
           <div className="modal">
             <h2 style={{ marginBottom: '24px' }}>{editingVideo ? 'Edit Video' : 'Add Video'}</h2>
-            {error && <div className="alert-error">{error}</div>}
+            {formError && <div className="alert-error">{formError}</div>}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Title</label>

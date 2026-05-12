@@ -13,7 +13,11 @@ app.use(express.json());
 
 // Register
 app.post("/register", async (req, res) => {
- const { fullName, username, email, password, bio, location } = req.body;
+  const { firstName, lastName, username, email, password, bio, location } = req.body;
+
+  if (!firstName || !lastName) {
+    return res.status(400).json({ message: "First name and last name are required" })
+  }
 
   const users = getUsers();
 
@@ -26,7 +30,8 @@ app.post("/register", async (req, res) => {
 
   const newUser = {
     id: Date.now(),
-    fullName,
+    firstName,
+    lastName,
     username,
     email,
     password: hashedPassword,
@@ -64,7 +69,8 @@ app.post("/login", async (req, res) => {
     token,
     user: {
       id: user.id,
-      fullName: user.fullName,
+      firstName: user.firstName,
+      lastName: user.lastName,
       username: user.username,
       email: user.email,
     },
@@ -100,21 +106,20 @@ app.get("/profile", authenticateToken, (req, res) => {
     return res.status(404).json({ message: "User not found" });
   }
 
- res.json({
-  id: user.id,
-  fullName: user.fullName,
-  username: user.username,
-  email: user.email,
-  bio: user.bio || '',
-  location: user.location || ''
-})
-
-;
+  res.json({
+    id: user.id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    bio: user.bio || '',
+    location: user.location || ''
+  });
 });
 
 // Update Profile
 app.put("/profile", authenticateToken, async (req, res) => {
-  const { fullName, username, email, bio, location } = req.body;
+  const { firstName, lastName, username, email, bio, location } = req.body;
 
   const users = getUsers();
   const index = users.findIndex((u) => u.id === req.user.id);
@@ -125,7 +130,8 @@ app.put("/profile", authenticateToken, async (req, res) => {
 
   users[index] = {
     ...users[index],
-    fullName: fullName || users[index].fullName,
+    firstName: firstName || users[index].firstName,
+    lastName: lastName || users[index].lastName,
     username: username || users[index].username,
     email: email || users[index].email,
     bio: bio !== undefined ? bio : users[index].bio,
@@ -136,7 +142,8 @@ app.put("/profile", authenticateToken, async (req, res) => {
 
   res.json({
     id: users[index].id,
-    fullName: users[index].fullName,
+    firstName: users[index].firstName,
+    lastName: users[index].lastName,
     username: users[index].username,
     email: users[index].email,
   });
@@ -182,7 +189,7 @@ app.post("/videos", authenticateToken, (req, res) => {
     duration: Number(duration),
     url,
     authorId: req.user.id,
-    authorName: author ? author.fullName : 'Unknown',
+    authorName: author ? `${author.firstName} ${author.lastName}` : 'Unknown',
     createdAt: new Date().toISOString()
   }
 

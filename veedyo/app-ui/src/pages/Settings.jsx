@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast'
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -5,7 +6,8 @@ import axios from "axios";
 export default function Settings() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     bio: "",
@@ -29,7 +31,8 @@ export default function Settings() {
       })
       .then((res) => {
         setFormData({
-          fullName: res.data.fullName,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
           username: res.data.username,
           email: res.data.email,
           bio: res.data.bio || "",
@@ -64,9 +67,9 @@ export default function Settings() {
         headers: { Authorization: `Bearer ${token}` },
       });
       localStorage.setItem("user", JSON.stringify(res.data));
-      setSuccess("Profile updated successfully!");
+      toast.success('Profile updated successfully!')
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
+      toast.error(err.response?.data?.message || 'Something went wrong')
     } finally {
       setLoading(false);
     }
@@ -93,14 +96,12 @@ export default function Settings() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Full Name</label>
-            <input
-              className="form-input"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              required
-            />
+            <label>First Name</label>
+            <input className="form-input" name="firstName" value={formData.firstName} onChange={handleChange} required />
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input className="form-input" name="lastName" value={formData.lastName} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label>Username</label>
