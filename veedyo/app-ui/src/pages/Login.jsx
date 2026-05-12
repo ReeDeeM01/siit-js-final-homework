@@ -21,7 +21,7 @@ export default function Login() {
       const res = await axios.post('http://localhost:3001/login', formData)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
-      navigate('/')
+      navigate('/profile')
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong')
     } finally {
