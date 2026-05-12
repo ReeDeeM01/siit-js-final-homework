@@ -21,7 +21,7 @@ export default function Login() {
       const res = await axios.post('http://localhost:3001/login', formData)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('user', JSON.stringify(res.data.user))
-      navigate('/profile')
+      navigate('/')
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong')
     } finally {
@@ -30,94 +30,33 @@ export default function Login() {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: 'calc(100vh - 60px)',
-      padding: '20px'
-    }}>
-      <div style={{
-        backgroundColor: 'var(--surface)',
-        border: '1px solid var(--border)',
-        borderRadius: '12px',
-        padding: '40px',
-        width: '100%',
-        maxWidth: '420px'
-      }}>
-        <h1 style={{ fontSize: '24px', marginBottom: '8px' }}>Welcome back</h1>
-        <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>
-          Log in to your VeedYo account
-        </p>
+    <div className="form-page">
+      <div className="form-card">
+        <h1>Welcome back</h1>
+        <p>Log in to your VeedYo account</p>
 
-        {error && (
-          <div style={{
-            backgroundColor: 'rgba(255, 77, 77, 0.1)',
-            border: '1px solid var(--primary)',
-            color: 'var(--primary)',
-            padding: '12px',
-            borderRadius: '8px',
-            marginBottom: '20px'
-          }}>
-            {error}
+        {error && <div className="alert-error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input className="form-input" name="email" type="email" value={formData.email} onChange={handleChange} required />
           </div>
-        )}
+          <div className="form-group">
+            <label>Password</label>
+            <input className="form-input" name="password" type="password" value={formData.password} onChange={handleChange} required />
+          </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            style={inputStyle}
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            style={inputStyle}
-          />
-
-          <button type="submit" disabled={loading} style={buttonStyle}>
+          <button type="submit" disabled={loading} className="btn-primary" style={{ width: '100%', padding: '12px', fontSize: '16px', marginTop: '8px' }}>
             {loading ? 'Logging in...' : 'Log in'}
           </button>
         </form>
 
         <p style={{ textAlign: 'center', marginTop: '24px', color: 'var(--text-secondary)' }}>
           Don't have an account?{' '}
-          <Link to="/register" style={{ color: 'var(--primary)', textDecoration: 'none' }}>
-            Register
-          </Link>
+          <Link to="/register" style={{ color: 'var(--primary)', textDecoration: 'none' }}>Register</Link>
         </p>
       </div>
     </div>
   )
-}
-
-const inputStyle = {
-  backgroundColor: 'var(--bg)',
-  border: '1px solid var(--border)',
-  borderRadius: '8px',
-  padding: '12px 16px',
-  color: 'var(--text)',
-  fontSize: '15px',
-  outline: 'none',
-  width: '100%'
-}
-
-const buttonStyle = {
-  backgroundColor: 'var(--primary)',
-  color: 'white',
-  border: 'none',
-  borderRadius: '8px',
-  padding: '12px',
-  fontSize: '16px',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  width: '100%'
 }

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { getUsers, saveUsers } from "./db.js";
+import { getUsers, saveUsers, getVideos, saveVideos } from "./db.js";
 
 const app = express();
 const PORT = 3001;
@@ -148,6 +148,86 @@ app.delete("/profile", authenticateToken, (req, res) => {
   const newUsers = users.filter(u => u.id !== req.user.id)
   saveUsers(newUsers)
   res.json({ message: "Account deleted successfully" })
+})
+
+// Get all videos (public)
+app.get("/videos", (req, res) => {
+  const videos = getVideos()
+  res.json(videos)
+})
+
+// Add video (protected)
+app.post("/videos", authenticateToken, (req, res) => {
+  const { title, description, category, duration, url } = req.body
+
+  if (!title || !description || !category || !duration || !url) {
+    return res.status(400).json({ message: "All fields are required" })
+  }
+
+  const users = getUsers()
+  const author = users.find(u => u.id === req.user.id)
+
+  const videos = getVideos()
+  const newVideo = {
+    id: Date.now(),
+    title,
+    description,
+    category,
+    duration: Number(duration),
+    url,
+    authorId: req.user.id,
+    authorName: author ? author.fullName : 'Unknown',
+    createdAt: new Date().toISOString()
+  }
+
+  videos.push(newVideo)
+  saveVideos(videos)
+  res.status(201).json(newVideo)
+})
+
+// Update video (protected)
+app.put("/videos/:id", authenticateToken, (req, res) => {
+  const { title, description, category, duration, url } = req.body
+  const videos = getVideos()
+  const index = videos.findIndex(v => v.id === Number(req.params.id))
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Video not found" })
+  }
+
+  if (videos[index].authorId !== req.user.id) {
+    return res.status(403).json({ message: "You can only edit your own videos" })
+  }
+
+  videos[index] = {
+    ...videos[index],
+    title: title || videos[index].title,
+    description: description || videos[index].description,
+    category: category || videos[index].category,
+    duration: duration ? Number(duration) : videos[index].duration,
+    url: url || videos[index].url
+  }
+
+  saveVideos(videos)
+  res.json(videos[index])
+})
+
+// Delete video (protected)
+app.delete("/videos/:id", authenticateToken, (req, res) => {
+  const videos = getVideos()
+  const video = videos.find(v => v.id === Number(req.params.id))
+
+  if (!video) {
+    return res.status(404).json({ message: "Video not found" })
+  }
+
+  if (video.authorId !== req.user.id) {
+    return res.status(403).json({ message: "You can only delete your own videos" })
+  }
+
+  const newVideos = videos.filter(v => v.id !== Number(req.params.id))
+  saveVideos(newVideos)
+  res.json({ message: "Video deleted successfully" })
 })
 
 app.listen(PORT, () => {

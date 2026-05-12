@@ -13,7 +13,7 @@
       "username": "trend_lift",
       "email": "trendliftwe@gmail.com",
       "password": "$2b$10$FoHEQd01UdAhoeSe6s2qwOi/0HTcJxqYz6MEwIaeJgDM6JoFYb/sO",
-      "bio": "Just a viewer on this platform",
+      "bio": "Not a content creator",
       "location": "Romania"
     },
     {
@@ -29,6 +29,19 @@
       "username": "bri3",
       "email": "brianna.and16@outlook.com",
       "password": "$2b$10$eR/3cmDeZDh6f8JJzIRMA.maPQ8Y5HBm2CPI4vd5n.Aha55D/8K8q"
+    }
+  ],
+  "videos": [
+    {
+      "id": 1778588010806,
+      "title": "Money Glitch",
+      "description": "In this video you will realise you have to go to work!",
+      "category": "Chill",
+      "duration": 10,
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "authorId": 1778154615561,
+      "authorName": "Trend Lift",
+      "createdAt": "2026-05-12T12:13:30.806Z"
     }
   ]
 }
