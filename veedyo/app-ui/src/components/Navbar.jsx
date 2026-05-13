@@ -17,7 +17,6 @@ export default function Navbar() {
       </Link>
 
       <div className="navbar-links">
-        {token && <Link to="/videos" className="navbar-link">Videos</Link>}
         {token ? (
           <>
             <Link to="/profile" className="navbar-link">Profile</Link>

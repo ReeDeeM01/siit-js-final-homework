@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
@@ -166,13 +167,33 @@ export default function Videos() {
         </div>
       )}
 
+      {/* Hero for unauthenticated users */}
+      {!token && (
+        <div style={{ marginTop: '60px', padding: '60px 20px', textAlign: 'center', borderTop: '1px solid var(--border)' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px' }}>
+            The world is watching <span style={{ color: 'var(--primary)' }}>VeedYo</span>
+          </h1>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '18px', marginBottom: '32px' }}>
+            Share your videos. Build your audience. Join millions of creators.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <Link to="/register" style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '14px 32px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '16px' }}>
+              Get Started
+            </Link>
+            <Link to="/login" style={{ backgroundColor: 'transparent', color: 'var(--text)', padding: '14px 32px', borderRadius: '8px', textDecoration: 'none', fontWeight: 'bold', fontSize: '16px', border: '1px solid var(--border)' }}>
+              Log In
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Videos Grid */}
-      {videos.length === 0 ? (
+      {token && videos.length === 0 ? (
         <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-secondary)' }}>
           <p style={{ fontSize: '18px' }}>No videos yet.</p>
-          {token && <p>Be the first to add one!</p>}
+          <p>Be the first to add one!</p>
         </div>
-      ) : (
+      ) : token && (
         <div className="videos-grid">
           {videos.map(video => (
             <div key={video.id} className="video-card">

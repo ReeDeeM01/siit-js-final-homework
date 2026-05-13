@@ -9,6 +9,16 @@
       "password": "$2b$10$vfQ7aYTPW3YuedyTptGlSey3n/aig/c360BvZ6Wy15PNmklWQGh0m",
       "bio": "",
       "location": ""
+    },
+    {
+      "id": 1778606762506,
+      "firstName": "Carp",
+      "lastName": "Petru",
+      "username": "petrisor66",
+      "email": "bloddyclaws@gmail.com",
+      "password": "$2b$10$5Lu5AzKGfee8VgLpBkcrxeIhsErSf8hux5G/NxvSlZGwxB6v9J80i",
+      "bio": "",
+      "location": ""
     }
   ],
   "videos": [
@@ -33,6 +43,17 @@
       "authorId": 1778589973943,
       "authorName": "Trend Lift",
       "createdAt": "2026-05-12T12:58:33.321Z"
+    },
+    {
+      "id": 1778606845461,
+      "title": "Visiting the BIGGEST castle in the WORLD!",
+      "description": "Follow me as i deeply adventure into the greatest castle the humanity ever built!",
+      "category": "Travel",
+      "duration": 35,
+      "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "authorId": 1778606762506,
+      "authorName": "Carp Petru",
+      "createdAt": "2026-05-12T17:27:25.461Z"
     }
   ]
 }
